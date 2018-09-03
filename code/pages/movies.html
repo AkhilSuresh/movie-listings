@@ -1,0 +1,27 @@
+<div style="margin-right:0;"  class="row">
+   <img style="width:60px; margin-left:20px" src="https://www.themoviedb.org/assets/1/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg">
+   <div style="margin-left: 10px;
+      font-weight: 900;
+      font-size: 24px;
+      color: #2b5204;
+      padding-top: 15px;
+      width: 60%;
+      display: inline-table;">Search Results: {{searchKeyword}}</div>
+</div>
+<div style="margin-top:20px; margin-left:20px" ng-repeat="movie in movies">
+   <div ng-click="movieDetails(movie)" style="background:white" class="post-container">
+      <div class="post-thumb"><img style="width: 400px;
+         height: 275px;" ng-src="{{movieUrl(movie.backdrop_path, movie.poster_path)}}"></div>
+      <div class="post-content">
+         <h3 class="post-title">{{movie.original_title}}</h3>
+         <p class="release-date">{{movie.release_date | date}}</p>
+         <p>{{movie.overview}}</p>
+      </div>
+      <div ng-if="!inFavorites(movie.id)" ng-click="addToFavorites(movie, $event)"  class="btn btn-info btn-lg">
+         <span class="glyphicon glyphicon-heart"></span> Add to favorites 
+      </div>
+      <div ng-if="inFavorites(movie.id)" class="btn btn-info btn-lg">
+         <span class="glyphicon glyphicon-ok"></span> Marked as favorite 
+      </div>
+   </div>
+</div>

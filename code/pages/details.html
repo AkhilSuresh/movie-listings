@@ -1,0 +1,43 @@
+<div class="movie-detail">
+   <div class="movie-detail-container post-container">
+      <div class="post-thumb"><img style="width: 250px;
+         height: 500px;" src="{{movieUrl()}}"></div>
+      <div class="post-content-details">
+         <div style="font-size: 22px;
+            color: #ada3a3;"> <span class="post-title-details">{{movieDetails.original_title}}</span> ({{movieDetails.release_date | date : "y"}})</div>
+         <div class="">
+            <svg style="width:85px; height:85px" class="radial-progress" data-percentage="82" viewBox="0 0 80 80">
+               <circle class="incomplete" cx="40" cy="40" r="35"></circle>
+               <circle class="complete" cx="40" cy="40" r="35" style="stroke-dashoffset: 39.58406743523136;"></circle>
+               <text style="font-size: 17px;
+                  font-weight: 900;" class="percentage" x="50%" y="57%" transform="matrix(0, 1, -1, 0, 80, 0)">{{getRating(movieDetails.vote_average*10)}}%</text>
+            </svg>
+         </div>
+         <div class="post-title-details-overview">Overview</div>
+         <p>{{movieDetails.overview}}</p>
+      </div>
+      <div class="post-title-details-crew">Featured Crew</div>
+      <table id="creators">
+         <tr>
+            <th>{{credits.crew[0].name}}</th>
+            <th>{{credits.crew[1].name}}</th>
+            <th>{{credits.crew[2].name}}</th>
+            <th>{{credits.crew[3].name}}</th>
+         </tr>
+         <tr style="font-weight: 200">
+            <td>{{credits.crew[0].job}}</td>
+            <td>{{credits.crew[1].job}}</td>
+            <td>{{credits.crew[2].job}}</td>
+            <td>{{credits.crew[3].job}}</td>
+         </tr>
+      </table>
+   </div>
+</div>
+<div class="top-billed">Top Billed Cast</div>
+<div style="display: flex" class="row cast">
+   <div style="padding-right: 20px;
+      " ng-if="cast.profile_path" ng-repeat="cast in credits.cast | limitTo: 10" class="">
+      <img style="width:100px" src="{{castImage(cast.profile_path)}}" alt="Snow">
+      <p style="color:black; margin-top:10px"><b>{{cast.name}}</b></p>
+   </div>
+</div>
